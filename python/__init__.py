@@ -36,3 +36,4 @@ from fir import *
 from add import *
 from interp import *
 from autocorr import *
+from model_ff import model_ff

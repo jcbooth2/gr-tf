@@ -22,5 +22,5 @@ install(FILES
     add.xml
     interp.xml
     autocorr.xml
-    DESTINATION share/gnuradio/grc/blocks
+    tf_model_ff.xml DESTINATION share/gnuradio/grc/blocks
 )
