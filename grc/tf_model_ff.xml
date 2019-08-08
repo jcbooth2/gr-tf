@@ -28,6 +28,18 @@
     <type>int</type>
   </param>
 
+  <param>
+    <name>Input Tensor Name</name>
+    <key>input_tensor</key>
+    <type>string</type>
+  </param>
+
+  <param>
+    <name>Output Tensor Name</name>
+    <key>output_tensor</key>
+    <type>string</type>
+  </param>
+
   <!-- Make one 'sink' node per input. Sub-nodes:
        * name (an identifier for the GUI)
        * type

@@ -20,7 +20,7 @@
 #
 
 import numpy
-import tensorflow
+import tensorflow as tf
 from gnuradio import gr
 
 class model_ff(gr.basic_block):
@@ -33,8 +33,8 @@ class model_ff(gr.basic_block):
             in_sig=[numpy.float32],
             out_sig=[numpy.float32])
 
-        self.sess = tensorflow.Session()
-        self.op = tf.saved_model.loader.load(sess, [tag_constants.TRAINING], export_dir)
+        self.sess = tf.Session()
+        self.op = tf.saved_model.loader.load(self.sess, [tf.saved_model.tag_constants.SERVING], export_dir)
 
 
     def forecast(self, noutput_items, ninput_items_required):
@@ -43,7 +43,7 @@ class model_ff(gr.basic_block):
             ninput_items_required[i] = input_size*noutput_items/output_size
 
     def general_work(self, input_items, output_items):
-        rv = self.sess.run([self.op], feed_dict={input_items[0]})
+        rv = self.sess.run('dense/BiasAdd:0',feed_dict={'input_1:0':x_train})
         output_items[0][:] = rv[0]
         consume(0, len(input_items[0]))
         #self.consume_each(len(input_items[0]))
